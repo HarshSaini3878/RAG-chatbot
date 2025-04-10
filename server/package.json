@@ -1,0 +1,18 @@
+{"type": "module",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "@langchain/community": "^0.3.40",
+    "@langchain/core": "^0.3.44",
+    "@langchain/google-genai": "^0.2.3",
+    "@langchain/openai": "^0.5.5",
+    "blob-polyfill": "^9.0.20240710",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "langchain": "^0.3.21",
+    "multer": "^1.4.5-lts.2",
+    "pdf-parse": "^1.1.1"
+    
+  }
+  
+}
