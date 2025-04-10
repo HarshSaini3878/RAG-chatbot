@@ -68,12 +68,12 @@ app.post('/api/chat', async (req, res) => {
     if (!vectorStore) {
       return res.status(400).json({ error: 'No PDF loaded. Please upload a PDF first.' });
     }
-    console.log("hello 1")
+   
     const { question } = req.body;
     if (!question || typeof question !== 'string') {
       return res.status(400).json({ error: 'Invalid question format' });
     }
-    console.log("hello 1")
+
     const model = new ChatGoogleGenerativeAI({
       model: "gemini-2.0-flash",  // Changed from 'gemini-pro'
       maxOutputTokens: 2048,
@@ -90,7 +90,7 @@ app.post('/api/chat', async (req, res) => {
         }
       ]
     });
-    console.log("hello 1",model)
+    
     const prompt = PromptTemplate.fromTemplate(`
       Answer the user's question based only on the following context:
       {context}
@@ -100,7 +100,7 @@ app.post('/api/chat', async (req, res) => {
       Provide a clear, concise answer in the same language as the question.
       If the answer isn't in the context, say "I couldn't find that information in the document."
     `);
-    console.log("hello 1",prompt);
+    
     const combineDocsChain = await createStuffDocumentsChain({
       llm: model,
       prompt,
@@ -111,11 +111,11 @@ app.post('/api/chat', async (req, res) => {
       combineDocsChain,
       retriever,
     });
-    console.log("hello 1")
+  
     const result = await retrievalChain.invoke({
       input: question,
     });
-    console.log("hello 1")
+   
     res.json({ 
       answer: result.answer,
       sources: result.context.map(doc => doc.metadata.source)
